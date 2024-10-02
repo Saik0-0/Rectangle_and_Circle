@@ -6,7 +6,7 @@ class Rectangle:
         self.height = height
 
     def __str__(self):
-        return 'Ширина: ' + str(self.width) + ', высота: ' + str(self.height)
+        return 'Ширина: {0}, высота: {1}'.format(str(self.width), str(self.height))
 
     def __call__(self):
         print(self)

@@ -28,3 +28,16 @@ class Circle:
         if self.x == obj.x and self.y == obj.y:
             return True
         return False
+
+    def intersect_square(self, obj):
+        if not self.is_intersect(obj):
+            return False
+        d = math.sqrt((obj.x - self.x) ** 2 + (obj.y - self.y) ** 2)
+        if d <= abs(self.radius - obj.radius):
+            return math.pi * (min(self.radius, obj.radius) ** 2)
+
+        sqr1 = self.radius ** 2 * math.acos((d ** 2 + self.radius ** 2 - obj.radius ** 2) / (2 * d * self.radius))
+        sqr2 = obj.radius ** 2 * math.acos((d ** 2 + obj.radius ** 2 - self.radius ** 2) / (2 * d * obj.radius))
+        sqr3 = 0.5 * math.sqrt((-d + self.radius + obj.radius) * (d + self.radius - obj.radius) * (d - self.radius + obj.radius) * (d + self.radius + obj.radius))
+
+        return sqr1 + sqr2 - sqr3
