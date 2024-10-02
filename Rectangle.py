@@ -23,3 +23,10 @@ class Rectangle:
         if self.y + self.height <= obj.y or obj.y + obj.height <= self.y:
             return False
         return True
+
+    def intersect_square(self, obj):
+        if not self.is_intersect(obj):
+            return False
+        intersect_width = max(0, min(self.x + self.width, obj.x + obj.width) - max(self.x, obj.x))
+        intersect_height = max(0, min(self.y + self.height, obj.y + obj.height) - max(self.y, obj.y))
+        return intersect_width * intersect_height
